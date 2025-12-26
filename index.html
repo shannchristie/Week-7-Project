@@ -225,6 +225,58 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="src/index.js"></script>
-   
+  <script>
+  const apiKey = "dfb7a34o08287b67f88fe5bd29ta4408";
+
+  function search(event) {
+    event.preventDefault();
+    const searchInputElement = document.querySelector("#search-input");
+    const city = searchInputElement.value;
+
+    const apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+
+    axios
+      .get(apiUrl)
+      .then(displayWeather)
+      .catch(function (error) {
+        console.log("Error fetching weather:", error);
+        alert("Sorry, city not found!");
+      });
+
+    searchInputElement.value = "";
+  }
+
+  function displayWeather(response) {
+    const cityElement = document.querySelector("#current-city");
+    const temperatureElement = document.querySelector(".current-temperature-value");
+    const temperatureUnit = document.querySelector(".current-temperature-unit");
+
+
+    const city = response.data.city;
+    const temperature = Math.round(response.data.temperature.current);
+
+    cityElement.innerHTML = city;
+    temperatureElement.innerHTML = temperature;
+    temperatureUnit.innerHTML = "°C";
+  }
+
+  function formatDate(date) {
+    let minutes = date.getMinutes();
+    let hours = date.getHours();
+    const days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+    if (minutes < 10) minutes = `0${minutes}`;
+    if (hours < 10) hours = `0${hours}`;
+    return `${days[date.getDay()]} ${hours}:${minutes}`;
+  }
+
+
+  const currentDateElement = document.querySelector("#current-date");
+  currentDateElement.innerHTML = formatDate(new Date());
+
+ 
+  const searchForm = document.querySelector("#search-form");
+  searchForm.addEventListener("submit", search);
+</script>
+
   </body>
 </html>
