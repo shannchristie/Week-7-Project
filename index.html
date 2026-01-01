@@ -185,12 +185,13 @@
       <header>
         <form id="search-form">
           <input
-            type="search
-            placeholder="Enter a city"
-            required
-            class="search-input"
-            id="search-input"
-          />
+  type="search"
+  placeholder="Enter a city"
+  required
+  class="search-input"
+  id="search-input"
+/>
+
         <button type="submit" class="search-button liquid-button">
   <span>Search</span>
 </button>
@@ -203,9 +204,13 @@
           <div>
             <h1 class="current-city" id="current-city">London</h1>
             <p class="current-details">
-              <span id="current-date"></span> moderate rain <br />
-              Humidity: <strong>87%</strong>, Wind: <strong>7.2km/h</strong>
-            </p>
+  <span id="current-date"></span>
+  <span id="weather-description"></span>
+  <br />
+  Humidity: <strong id="humidity"></strong>,
+  Wind: <strong id="wind"></strong>
+</p>
+
           </div>
           <div class="current-temperature">
             <span class="current-temperature-icon">☀️</span
@@ -230,6 +235,7 @@
 
   function search(event) {
     event.preventDefault();
+
     const searchInputElement = document.querySelector("#search-input");
     const city = searchInputElement.value;
 
@@ -250,33 +256,37 @@
     const cityElement = document.querySelector("#current-city");
     const temperatureElement = document.querySelector(".current-temperature-value");
     const temperatureUnit = document.querySelector(".current-temperature-unit");
+    const descriptionElement = document.querySelector("#weather-description");
+    const humidityElement = document.querySelector("#humidity");
+    const windElement = document.querySelector("#wind");
 
-
-    const city = response.data.city;
-    const temperature = Math.round(response.data.temperature.current);
-
-    cityElement.innerHTML = city;
-    temperatureElement.innerHTML = temperature;
+    cityElement.innerHTML = response.data.city;
+    temperatureElement.innerHTML = Math.round(response.data.temperature.current);
     temperatureUnit.innerHTML = "°C";
+
+    descriptionElement.innerHTML = response.data.condition.description;
+    humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
+    windElement.innerHTML = `${response.data.wind.speed} km/h`;
   }
 
   function formatDate(date) {
     let minutes = date.getMinutes();
     let hours = date.getHours();
     const days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+
     if (minutes < 10) minutes = `0${minutes}`;
     if (hours < 10) hours = `0${hours}`;
+
     return `${days[date.getDay()]} ${hours}:${minutes}`;
   }
-
 
   const currentDateElement = document.querySelector("#current-date");
   currentDateElement.innerHTML = formatDate(new Date());
 
- 
   const searchForm = document.querySelector("#search-form");
   searchForm.addEventListener("submit", search);
 </script>
+
 
   </body>
 </html>
