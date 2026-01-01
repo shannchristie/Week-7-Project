@@ -12,195 +12,177 @@
     <link rel="stylesheet" href="src/styles.css" />
     <title>My weather application</title>
   </head>
-<style>
-  html,
-
-
- body {
-  margin: 0;
-  min-height: 100vh;
-  background: linear-gradient(
-    to bottom,
-    #E6C9DB 0%,
-    #E0C2D4 40%,
-    #F6B08A 75%,
-    #F8AD7C 100%
-  );
-  font-family: "Roboto", sans-serif;
-}
-
-  a {
-    color: #F8AD7C;
-  }
-
-  .weather-app {
-    background: white;
-    max-width: 600px;
-    margin: 60px auto;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 30px 50px rgba(65, 50, 100, 0.08);
-  }
-
-  header {
-    border-bottom: 1px solid #f9f7fe;
-    padding-bottom: 30px;
-  }
-
-  .search-input {
-    background-color: #f9f7fe;
-    border: none;
-    color: rgba(39, 33, 66, 0.4);
-    font-size: 16px;
-    padding: 20px;
-    width: 75%;
-    border-radius: 6px;
-  }
-
-  .search-button {
-    margin-left: 5px;
-    font-size: 16px;
-    background-color: #f89cb0;
-    color: white;
-    border: none;
-    padding: 20px;
-    line-height: 1;
-    border-radius: 5px;
-  }
-  .liquid-button {
-  position: relative;
-  overflow: hidden;
-  background: #f89cb0;
-  cursor: pointer;
-}
-
-.liquid-button span {
-  position: relative;
-  z-index: 2;
-}
-
-
-.liquid-button::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -100%;
-  width: 100%;
-  height: 200%;
-  background: radial-gradient(
-    circle at 50% 50%,
-    #f6b08a 40%,
-    #f89cb0 70%
-  );
-  transition: bottom 0.6s ease;
-  z-index: 1;
-}
-
-
-.liquid-button::after {
-  content: "";
-  position: absolute;
-  left: -50%;
-  bottom: 50%;
-  width: 200%;
-  height: 200%;
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 45%;
-  animation: liquidWave 6s linear infinite;
-  z-index: 1;
-}
-
-
-.liquid-button:hover::before {
-  bottom: 0;
-}
-
-@keyframes liquidWave {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-
-  main {
-    padding: 30px 0;
-  }
-
-  .current-weather {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .current-city {
-    font-size: 45px;
-    font-weight: 900;
-    margin: 0;
-  }
-
-  .current-details {
-    color: rgba(39, 33, 66, 0.4);
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 24px;
-  }
-
-  .current-details strong {
-    color: #f89cb0;
-  }
-
-  .current-temperature {
-    font-size: 48px;
-  }
-
-.current-temperature-icon {
-  position: relative;
-  top: 20px;
-  margin-right: -15px;
-}
-
-.current-temperature-icon img {
-  width: 100px;
-  height: 100px;
-}
-  .current-temperature-value {
-    font-size: 80px;
-    font-weight: bold;
-  }
-
-  .current-temperature-unit {
-    font-size: 28px;
-    position: relative;
-    top: -38px;
-    margin-left: -15px;
-  }
-
-  footer {
-    border-top: 1px solid #f9f7fe;
-    text-align: center;
-    padding-top: 15px;
-    color: rgba(39, 33, 66, 0.4);
-  }
-</style>
+  <style>
+    html,
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(
+        to bottom,
+        #e6c9db 0%,
+        #e0c2d4 40%,
+        #f6b08a 75%,
+        #f8ad7c 100%
+      );
+      font-family: "Roboto", sans-serif;
+    }
+    a {
+      color: #f8ad7c;
+    }
+    .weather-app {
+      background: white;
+      max-width: 600px;
+      margin: 60px auto;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 30px 50px rgba(65, 50, 100, 0.08);
+    }
+    header {
+      border-bottom: 1px solid #f9f7fe;
+      padding-bottom: 30px;
+    }
+    .search-input {
+      background-color: #f9f7fe;
+      border: none;
+      color: rgba(39, 33, 66, 0.4);
+      font-size: 16px;
+      padding: 20px;
+      width: 75%;
+      border-radius: 6px;
+    }
+    .search-button {
+      margin-left: 5px;
+      font-size: 16px;
+      background-color: #f89cb0;
+      color: white;
+      border: none;
+      padding: 20px;
+      line-height: 1;
+      border-radius: 5px;
+    }
+    .liquid-button {
+      position: relative;
+      overflow: hidden;
+      background: #f89cb0;
+      cursor: pointer;
+    }
+    .liquid-button span {
+      position: relative;
+      z-index: 2;
+    }
+    .liquid-button::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -100%;
+      width: 100%;
+      height: 200%;
+      background: radial-gradient(circle at 50% 50%, #f6b08a 40%, #f89cb0 70%);
+      transition: bottom 0.6s ease;
+      z-index: 1;
+    }
+    .liquid-button::after {
+      content: "";
+      position: absolute;
+      left: -50%;
+      bottom: 50%;
+      width: 200%;
+      height: 200%;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 45%;
+      animation: liquidWave 6s linear infinite;
+      z-index: 1;
+    }
+    .liquid-button:hover::before {
+      bottom: 0;
+    }
+    @keyframes liquidWave {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+    main {
+      padding: 30px 0;
+    }
+    .current-weather {
+      display: flex;
+      justify-content: space-between;
+    }
+    .current-city {
+      font-size: 38px;
+      font-weight: 900;
+      margin: 0;
+    }
+    .current-details {
+      color: rgba(39, 33, 66, 0.4);
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+    }
+    .current-details strong {
+      color: #f89cb0;
+    }
+    .current-temperature {
+      font-size: 48px;
+    }
+    .current-temperature-icon {
+      position: relative;
+      top: -8px;
+      margin-right: 10px;
+    }
+    .current-temperature-icon img {
+      width: 88px;
+      height: 88px;
+    }
+    .current-temperature-value {
+      font-size: 80px;
+      font-weight: bold;
+      display: inline-block;
+    }
+    .current-temperature-unit {
+      font-size: 28px;
+      position: relative;
+      top: -10px;
+      margin-left: 4px;
+    }
+    .weekly-forecast {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+    }
+    .forecast-day {
+      text-align: center;
+      font-size: 14px;
+    }
+    .forecast-day img {
+      width: 50px;
+      height: 50px;
+      margin-bottom: 5px;
+    }
+    footer {
+      border-top: 1px solid #f9f7fe;
+      text-align: center;
+      padding-top: 15px;
+      color: rgba(39, 33, 66, 0.4);
+    }
+  </style>
   <body>
     <div class="weather-app">
       <header>
         <form id="search-form">
           <input
-  type="search"
-  placeholder="Enter a city"
-  required
-  class="search-input"
-  id="search-input"
-/>
-
-        <button type="submit" class="search-button liquid-button">
-  <span>Search</span>
-</button>
-
-
+            type="search"
+            placeholder="Enter a city"
+            required
+            class="search-input"
+            id="search-input"
+          />
+          <button type="submit" class="search-button liquid-button">
+            <span>Search</span>
+          </button>
         </form>
       </header>
       <main>
@@ -208,100 +190,110 @@
           <div>
             <h1 class="current-city" id="current-city">London</h1>
             <p class="current-details">
-  <span id="current-date"></span>
-  <span id="weather-description"></span>
-  <br />
-  Humidity: <strong id="humidity"></strong>,
-  Wind: <strong id="wind"></strong>
-</p>
-
+              <span id="current-date"></span>
+              <span id="weather-description"></span>
+              <br />
+              Humidity: <strong id="humidity"></strong>,
+              Wind: <strong id="wind"></strong>
+            </p>
           </div>
-         <div class="current-temperature">
-  <span id="icon" class="current-temperature-icon">
-  <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/rain-day.png" alt="moderate rain">
-</span>
-  <span class="current-temperature-value">20</span>
-  <span class="current-temperature-unit">°C</span>
-</div>
-
+          <div class="current-temperature">
+            <span class="current-temperature-icon" id="icon"></span>
+            <span class="current-temperature-value">20</span>
+            <span class="current-temperature-unit">°C</span>
+          </div>
         </div>
+        <div class="weekly-forecast" id="weekly-forecast"></div>
       </main>
       <footer>
-      <p>
-  This project was coded by
-  <a href="https://github.com/shannchristie" target="_blank">✨🌙 Shannen</a> and is
-  <a href="https://github.com/shannchristie/Week-7-Project" target="_blank">on GitHub</a> and
-  <a href="https://app.netlify.com/projects/graceful-sunburst-a3fc69/overview" target="_blank">hosted on Netlify</a>
-</p>
-
+        <p>
+          This project was coded by
+          <a href="https://github.com/shannchristie" target="_blank" rel="noopener noreferrer">✨🌙 Shannen</a> and is
+          <a href="https://github.com/shannchristie/Week-7-Project" target="_blank" rel="noopener noreferrer">on GitHub</a> and
+          <a href="https://app.netlify.com/projects/graceful-sunburst-a3fc69/overview" target="_blank" rel="noopener noreferrer">hosted on Netlify</a>
+        </p>
       </footer>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="src/index.js"></script>
-  <script>
-  const apiKey = "dfb7a34o08287b67f88fe5bd29ta4408";
+    <script>
+      const apiKey = "dfb7a34o08287b67f88fe5bd29ta4408";
 
-  function search(event) {
-    event.preventDefault();
+      function search(event) {
+        event.preventDefault();
+        const searchInputElement = document.querySelector("#search-input");
+        const city = searchInputElement.value;
 
-    const searchInputElement = document.querySelector("#search-input");
-    const city = searchInputElement.value;
+        const apiUrlCurrent = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+        const apiUrlForecast = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
 
-    const apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+        axios.get(apiUrlCurrent)
+          .then(displayWeather)
+          .catch(function (error) {
+            console.log("Error fetching weather:", error);
+            alert("Sorry, city not found!");
+          });
 
-    axios
-      .get(apiUrl)
-      .then(displayWeather)
-      .catch(function (error) {
-        console.log("Error fetching weather:", error);
-        alert("Sorry, city not found!");
-      });
+        axios.get(apiUrlForecast)
+          .then(displayForecast)
+          .catch(function (error) {
+            console.log("Error fetching forecast:", error);
+          });
 
-    searchInputElement.value = "";
-  }
+        searchInputElement.value = "";
+      }
 
-  function displayWeather(response) {
-  const cityElement = document.querySelector("#current-city");
-  const temperatureElement = document.querySelector(".current-temperature-value");
-  const temperatureUnit = document.querySelector(".current-temperature-unit");
-  const descriptionElement = document.querySelector("#weather-description");
-  const humidityElement = document.querySelector("#humidity");
-  const windElement = document.querySelector("#wind");
-  const iconElement = document.querySelector("#icon");
+      function displayWeather(response) {
+        const cityElement = document.querySelector("#current-city");
+        const temperatureElement = document.querySelector(".current-temperature-value");
+        const temperatureUnit = document.querySelector(".current-temperature-unit");
+        const descriptionElement = document.querySelector("#weather-description");
+        const humidityElement = document.querySelector("#humidity");
+        const windElement = document.querySelector("#wind");
+        const iconElement = document.querySelector("#icon");
 
-  cityElement.innerHTML = response.data.city;
-  temperatureElement.innerHTML = Math.round(response.data.temperature.current);
-  temperatureUnit.innerHTML = "°C";
+        cityElement.innerHTML = response.data.city;
+        temperatureElement.innerHTML = Math.round(response.data.temperature.current);
+        temperatureUnit.innerHTML = "°C";
 
-  descriptionElement.innerHTML = response.data.condition.description;
-  humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
-  windElement.innerHTML = `${response.data.wind.speed} km/h`;
+        descriptionElement.innerHTML = response.data.condition.description;
+        humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
+        windElement.innerHTML = `${response.data.wind.speed} km/h`;
 
-  iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" alt="${response.data.condition.description}" />`;
+        iconElement.innerHTML = `<img src="${response.data.condition.icon_url.replace("http:", "https:")}" alt="${response.data.condition.description}" />`;
+      }
 
+      function displayForecast(response) {
+        const forecastElement = document.querySelector("#weekly-forecast");
+        forecastElement.innerHTML = "";
 
+        response.data.daily.forEach(day => {
+          const date = new Date(day.time);
+          const dayName = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"][date.getDay()];
 
-}
+          forecastElement.innerHTML += `
+            <div class="forecast-day">
+              <div>${dayName}</div>
+              <img src="${day.condition.icon_url.replace("http:", "https:")}" alt="${day.condition.description}" />
+              <div>${Math.round(day.temperature.maximum)}° / ${Math.round(day.temperature.minimum)}°</div>
+            </div>
+          `;
+        });
+      }
 
+      function formatDate(date) {
+        let minutes = date.getMinutes();
+        let hours = date.getHours();
+        const days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+        if (minutes < 10) minutes = `0${minutes}`;
+        if (hours < 10) hours = `0${hours}`;
+        return `${days[date.getDay()]} ${hours}:${minutes}`;
+      }
 
-  function formatDate(date) {
-    let minutes = date.getMinutes();
-    let hours = date.getHours();
-    const days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+      const currentDateElement = document.querySelector("#current-date");
+      currentDateElement.innerHTML = formatDate(new Date());
 
-    if (minutes < 10) minutes = `0${minutes}`;
-    if (hours < 10) hours = `0${hours}`;
-
-    return `${days[date.getDay()]} ${hours}:${minutes}`;
-  }
-
-  const currentDateElement = document.querySelector("#current-date");
-  currentDateElement.innerHTML = formatDate(new Date());
-
-  const searchForm = document.querySelector("#search-form");
-  searchForm.addEventListener("submit", search);
-</script>
-
-
+      const searchForm = document.querySelector("#search-form");
+      searchForm.addEventListener("submit", search);
+    </script>
   </body>
 </html>
